@@ -1,0 +1,154 @@
+<!doctype html><html lang="vi"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Khánh Huy Profile</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{min-height:100vh;display:flex;justify-content:center;align-items:center;background:#000;color:#fff;overflow:hidden}
+:root{--c:#ff0000}
+.bg{position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,var(--c)33,transparent 60%),
+radial-gradient(circle at 80% 80%,#00ff7a22,transparent 60%),#000;transition:.3s}
+.wrap{width:min(430px,92vw);perspective:900px;z-index:2}
+.card{background:rgba(15,15,15,.8);border:1px solid #ffffff14;border-radius:25px;padding:18px;
+backdrop-filter:blur(14px);box-shadow:0 0 70px var(--c)30;transform-style:preserve-3d;transition:.08s}
+.top{display:flex;gap:12px;align-items:center}
+.logo{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+background:radial-gradient(circle,var(--c),#111);box-shadow:0 0 20px var(--c)90;font-weight:900}
+h1{font-size:26px;font-weight:900;line-height:1.1}
+.sub{opacity:.75;font-size:13px;margin-top:4px;line-height:1.3}
+.drop{background:#0b0b0b;border:1px solid #ffffff12;border-radius:20px;padding:14px;margin-top:12px}
+.head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:900}
+.content{max-height:0;overflow:hidden;transition:.35s}
+.content.open{max-height:260px;margin-top:10px}
+.row{display:flex;justify-content:space-between;gap:12px;background:#00000060;padding:12px;border-radius:16px;
+margin-top:8px;border:1px solid #ffffff10}
+.left{opacity:.7;font-weight:800}
+.right{font-weight:900;text-align:right}
+.link{display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:20px;margin-top:12px;
+background:linear-gradient(135deg,var(--c)22,#ffffff05);border:1px solid #ffffff12;text-decoration:none;color:#fff;font-weight:900}
+.link small{opacity:.7;font-weight:700}
+.footer{text-align:center;margin-top:14px;opacity:.6;font-size:12px}
+.screen{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:#000000cc;z-index:10}
+.modal{width:min(330px,92vw);padding:16px;border-radius:22px;background:rgba(15,15,15,.88);
+border:1px solid #ffffff15;text-align:center;backdrop-filter:blur(16px)}
+.modal h2{font-size:26px;font-weight:900;margin:10px 0}
+.modal p{opacity:.75;margin-bottom:12px;font-size:13px;line-height:1.4}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.btn{flex:1;min-width:120px;padding:10px;border-radius:14px;border:1px solid #ffffff18;background:#0c0c0c;color:#fff;
+cursor:pointer;font-weight:900;font-size:13px}
+.btn:hover{border-color:var(--c)}
+</style></head><body>
+<div class="bg" id="bg"></div>
+
+<div class="screen" id="lang">
+  <div class="modal">
+    <div class="logo" style="margin:auto">KH</div>
+    <h2>Choose Language</h2>
+    <p>Chọn ngôn ngữ / Choose your language</p><div class="btnrow">
+      <button class="btn" onclick="setLang('vi')">🇻🇳 Tiếng Việt</button>
+      <button class="btn" onclick="setLang('en')">🇺🇸 English</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="color" style="display:none">
+  <div class="modal">
+    <div class="logo" style="margin:auto">🎨</div>
+    <h2 id="ctitle">Chọn màu</h2>
+    <p id="csub">Chọn theme màu giao diện</p>
+    <div class="btnrow">
+      <button class="btn" onclick="setColor('#ff0000')">🔴 Đỏ</button>
+      <button class="btn" onclick="setColor('#ff2fd6')">💗 Hồng</button>
+      <button class="btn" onclick="setColor('#00ff7a')">🟢 Xanh lá</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="card" id="card">
+    <div class="top">
+      <div class="logo">KH</div>
+      <div>
+        <h1 id="name">Nguyễn Hoàng Khánh Huy</h1>
+        <div class="sub" id="info">THCS Lê Hồng Phong • Lớp 7D • 13 tuổi • Việt Nam</div>
+      </div>
+    </div>
+
+    <div class="drop">
+      <div class="head" onclick="tog(this)">👋 <span class="t">Giới thiệu</span> <span>▾</span></div>
+      <div class="content open">
+        <div class="row"><div class="left t">Ngày sinh</div><div class="right">23/5/2013</div></div>
+        <div class="row"><div class="left t">Mô tả</div><div class="right">Học sinh THCS Lê Hồng Phong - 7D</div></div>
+      </div>
+    </div>
+
+    <div class="drop">
+      <div class="head" onclick="tog(this)">🏆 <span class="t">Kỹ năng</span> <span>▾</span></div>
+      <div class="content">
+        <div class="row"><div class="left t">Giỏi nhất</div><div class="right">Programming</div></div>
+        <div class="row"><div class="left t">Ngôn ngữ chính</div><div class="right">HTML, Python</div></div>
+        <div class="row"><div class="left t">Điểm mạnh</div><div class="right">Lười</div></div>
+      </div>
+    </div>
+
+    <div class="drop">
+      <div class="head" onclick="tog(this)">🎓 <span class="t">Học tập</span> <span>▾</span></div>
+      <div class="content">
+        <div class="row"><div class="left t">Chuyên ngành</div><div class="right">THCS</div></div>
+        <div class="row"><div class="left t">Định hướng</div><div class="right">Làm IT</div></div>
+      </div>
+    </div>
+
+    <div class="drop">
+      <div class="head" onclick="tog(this)">📍 <span class="t">Nơi ở</span> <span>▾</span></div>
+      <div class="content">
+        <div class="row"><div class="left t">Quê quán</div><div class="right">Việt Nam</div></div>
+        <div class="row"><div class="left t">Đang ở</div><div class="right">Côn Đảo</div></div>
+      </div>
+    </div>
+
+    <a class="link" target="_blank" href="https://www.tiktok.com/@aihoi_807?_r=1&_t=ZP-93gf1g5IPIU">
+      <div>🎵 TikTok<br><small>@aihoi_807</small></div><div>↗</div>
+    </a>
+
+    <a class="link" target="_blank" href="https://www.facebook.com/share/1AjjxknUVB/"><div>📘 Facebook<br><small>Profile</small></div><div>↗</div>
+    </a>
+
+    <div class="footer">By Nguyễn Hoàng Khánh Huy</div>
+  </div>
+</div>
+
+<script>
+let L="vi";
+function setLang(x){
+  L=x; document.getElementById("lang").style.display="none";
+  document.getElementById("color").style.display="flex";
+  if(L=="en"){
+    ctitle.innerText="Choose Color"; csub.innerText="Choose theme color";
+    document.querySelectorAll(".t")[0].innerText="Introduction";
+    document.querySelectorAll(".t")[1].innerText="Skills";
+    document.querySelectorAll(".t")[2].innerText="Study";
+    document.querySelectorAll(".t")[3].innerText="Location";
+    document.querySelectorAll(".left.t")[0].innerText="Birthday";
+    document.querySelectorAll(".left.t")[1].innerText="Description";
+    document.querySelectorAll(".left.t")[2].innerText="Best";
+    document.querySelectorAll(".left.t")[3].innerText="Main Languages";
+    document.querySelectorAll(".left.t")[4].innerText="Strength";
+    document.querySelectorAll(".left.t")[5].innerText="Level";
+    document.querySelectorAll(".left.t")[6].innerText="Goal";
+    document.querySelectorAll(".left.t")[7].innerText="Hometown";
+    document.querySelectorAll(".left.t")[8].innerText="Living in";
+    info.innerText="Le Hong Phong Secondary School • Class 7D • 13 years old • Vietnam";
+  }
+}
+function setColor(c){document.documentElement.style.setProperty("--c",c);bg.style.background=
+`radial-gradient(circle at 20% 20%,${c}33,transparent 60%),radial-gradient(circle at 80% 80%,#00ff7a22,transparent 60%),#000`;
+document.getElementById("color").style.display="none";}
+function tog(el){let c=el.parentElement.querySelector(".content");c.classList.toggle("open");el.lastChild.textContent=c.classList.contains("open")?"▴":"▾";}
+let card=document.getElementById("card");
+addEventListener("mousemove",e=>{
+  let x=(e.clientX/innerWidth-.5)*18,y=(e.clientY/innerHeight-.5)*-18;
+  card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+addEventListener("mouseleave",()=>card.style.transform="rotateX(0) rotateY(0)");
+</script>
+</body></html>
